@@ -15,7 +15,7 @@ const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    axios.get('https://randomuser.me/api')
+    axios.get('https://randomuser.me/api/?results=20')
       .then(res => {
         setUsers(res.data.results);
         setFilteredUsers(res.data.results);
@@ -41,7 +41,7 @@ const App: React.FC = () => {
 
   return (
     <div className="p-4 max-w-6xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4 text-center py5 bg-black text-white h-15 ">User Profile Dashboard</h1>
+      <h1 className="text-3xl font-bold mb-4 text-center py5  text-white h-15 ">User Profile Dashboard</h1>
       <SearchBar query={searchQuery} onChange={setSearchQuery} />
       <UserList users={filteredUsers} onUserClick={setSelectedUser} />
       {selectedUser && <UserModal user={selectedUser} onClose={() => setSelectedUser(null)} />}

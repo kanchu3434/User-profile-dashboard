@@ -5,4 +5,5 @@ export interface User {
   picture: { large: string };
   location: { street: { number: number; name: string }, city: string, country: string };
   dob: { date: string };
+  company:string;
 }
