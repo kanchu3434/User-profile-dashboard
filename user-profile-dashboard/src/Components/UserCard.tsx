@@ -7,8 +7,8 @@ interface Props {
 }
 
 const UserCard: React.FC<Props> = ({ user, onClick }) => (
-  <div onClick={onClick} className="cursor-pointer p-4 bg-white rounded-lg shadow hover:shadow-md">
-    <img src={user.picture.large} className="w-24 h-24 rounded-full mx-auto" />
+  <div onClick={onClick} className="cursor-pointer p-4 bg-white rounded-lg shadow hover:shadow-md bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 cursor-pointer border border-gray-100">
+    <img src={user.picture.large} className="w-24 h-24 rounded-full mx-auto " />
     <h2 className="text-lg text-center mt-2">{user.name.first} {user.name.last}</h2>
     <p className="text-center text-gray-500">{user.email}</p>
     <p className="text-center text-gray-500">{user.phone}</p>
