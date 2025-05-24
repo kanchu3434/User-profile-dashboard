@@ -1,9 +1,17 @@
 export interface User {
-  name: { first: string; last: string };
+  id: number;
+  name: string;
+  username: string;
   email: string;
   phone: string;
-  picture: { large: string };
-  location: { street: { number: number; name: string }, city: string, country: string };
-  dob: { date: string };
-  company:string;
+  website: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+  };
+  company: {
+    name: string;
+  };
 }

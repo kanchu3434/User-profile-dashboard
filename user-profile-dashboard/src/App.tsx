@@ -15,10 +15,10 @@ const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    axios.get('https://randomuser.me/api/?results=20')
-      .then(res => {
-        setUsers(res.data.results);
-        setFilteredUsers(res.data.results);
+    axios.get('https://jsonplaceholder.typicode.com/users')
+     .then(res => {
+       setUsers(res.data);
+setFilteredUsers(res.data);
         setLoading(false);
       })
       .catch(err => {
@@ -30,7 +30,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const query = searchQuery.toLowerCase();
     const filtered = users.filter(user =>
-      `${user.name.first} ${user.name.last}`.toLowerCase().includes(query) ||
+      `${user.name}`.toLowerCase().includes(query) ||
       user.email.toLowerCase().includes(query)
     );
     setFilteredUsers(filtered);

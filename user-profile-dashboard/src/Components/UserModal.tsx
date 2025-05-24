@@ -1,25 +1,47 @@
-import Modal from 'react-modal';
+import React from 'react';
 import { User } from '../types';
 
-Modal.setAppElement('#root');
-
-interface Props {
+interface UserModalProps {
   user: User;
   onClose: () => void;
 }
 
-const UserModal: React.FC<Props> = ({ user, onClose }) => (
-  <Modal isOpen={true} onRequestClose={onClose} className="bg-white p-6 max-w-md mx-auto mt-20 rounded shadow">
-    <button onClick={onClose} className="float-right text-xl">×</button>
-    <div className="text-center">
-      <img src={user.picture.large} className="w-24 h-24 rounded-full mx-auto" />
-      <h2 className="text-xl mt-2">{user.name.first} {user.name.last}</h2>
-      <p className="text-gray-600">{user.email}</p>
-      <p className="text-gray-600">{user.phone}</p>
-      <p className="mt-2">{user.location.street.number} {user.location.street.name}, {user.location.city}, {user.location.country}</p>
-      <p>DOB: {new Date(user.dob.date).toLocaleDateString()}</p>
+const UserModal: React.FC<UserModalProps> = ({ user, onClose }) => {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white p-6 rounded-lg max-w-md w-full relative">
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 text-gray-600 hover:text-black"
+        >
+          ✕
+        </button>
+        <div className="text-center">
+          <img
+            src={`https://i.pravatar.cc/150?u=${user.id}`}
+            alt={user.name}
+            className="w-24 h-24 rounded-full mx-auto mb-4"
+          />
+          <h2 className="text-2xl font-bold mb-2">{user.name}</h2>
+          <p className="text-sm text-gray-700 mb-1">
+            <strong>Email:</strong> {user.email}
+          </p>
+          <p className="text-sm text-gray-700 mb-1">
+            <strong>Phone:</strong> {user.phone}
+          </p>
+          <p className="text-sm text-gray-700 mb-1">
+            <strong>Website:</strong> {user.website}
+          </p>
+          <p className="text-sm text-gray-700 mb-1">
+            <strong>Company:</strong> {user.company.name}
+          </p>
+          <p className="text-sm text-gray-700">
+            <strong>Address:</strong> {user.address.street}, {user.address.city}
+          </p>
+        </div>
+      </div>
     </div>
-  </Modal>
-);
+  );
+};
 
 export default UserModal;
